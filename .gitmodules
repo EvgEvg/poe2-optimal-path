@@ -1,3 +1,4 @@
 [submodule "poe2-skilltree-export"]
 	path = poe2-skilltree-export
 	url = https://github.com/grindinggear/poe2-skilltree-export.git
+	branch = main

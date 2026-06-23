@@ -10,14 +10,46 @@ Skill tree data is vendored as a git submodule:
   - `data.json` — passive skill tree graph
   - `assets/` — tree rendering assets
 
-Clone with submodules:
+The submodule tracks the `main` branch of the upstream repo (not a fixed tag).
+
+### Clone
 
 ```bash
 git clone --recurse-submodules https://github.com/EvgEvg/poe2-optimal-path.git
 ```
 
-Update the skill tree data to the latest upstream release:
+### Updating the skill tree data
+
+Git submodules always record a **specific commit** in this repo. There is no built-in “always latest” mode — you choose when to bump that commit.
+
+**Pull latest upstream data into your working tree:**
 
 ```bash
 git submodule update --remote poe2-skilltree-export
+```
+
+Then commit the submodule pointer change if you want to save/share it:
+
+```bash
+git add poe2-skilltree-export
+git commit -m "Update poe2-skilltree-export"
+```
+
+**When someone else already bumped the submodule** (you just want to match this repo):
+
+```bash
+git pull --recurse-submodules
+```
+
+**Convenience alias** — pull this repo and refresh the submodule to latest upstream `main`:
+
+```bash
+git config alias.pull-all '!git pull && git submodule update --remote --merge poe2-skilltree-export'
+git pull-all
+```
+
+Optional: make submodule commands run automatically on every `git pull` in this repo:
+
+```bash
+git config submodule.recurse true
 ```
